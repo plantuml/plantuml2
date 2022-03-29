@@ -76,7 +76,7 @@ About the output, we currently generate only SVG, but we plan to support:
 
 ### Incompatible changes
 
-As said, we will be globally be compatible with PlantUML 1 syntax. However, we take this new release as an opportunity to improve some inconsistent choices that have been made in the past.
+As said, we will be generally compatible with PlantUML 1 syntax. However, we take this new release as an opportunity to improve some inconsistent choices that have been made in the past.
 
 * In class diagram, `package` do not define any namespace, which may be confusing. We have added `namespace` keywords to mitigate this. However, in Plantuml 2, `package` and `namespace` will be synonym, which may break some existing diagrams.
 
