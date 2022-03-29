@@ -31,7 +31,7 @@ Current version of PlantUML 2 provides only a **tiny** part of what PlantUML 1 i
 
 # Compatibility
 
-Globally, PlantUML 2 will be able to parse the same file than PlantUML 1.
+Globally, PlantUML 2 will be able to parse the same files than PlantUML 1.
 
 Some features will not be re-implemented, but the most important will:
 * MindMap diagram (**done**)
@@ -61,7 +61,18 @@ We are unsure about the following one:
 Features that will be excluded:
 * Ditaa
 
-We will port to Haxe the [Smetana project](https://plantuml.comsmetana02) which means that PlantUML 2 will **not** need any Graphviz/dot executable to run. 
+We will port to Haxe the [Smetana project](https://plantuml.comsmetana02) which means that PlantUML 2 will **not** need any Graphviz/dot executable to run.
+
+About the output, we currently generate only SVG, but we plan to support:
+* SVG (**done**)
+* PNG
+* LaTeX
+* EPS
+* TXT (Ascii Art)
+* XMI
+* SCXML
+
+
 
 ### Incompatible changes
 
