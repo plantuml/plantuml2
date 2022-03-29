@@ -3,7 +3,7 @@
 For the next major version, PlantUML will be developped using [Haxe language](https://haxe.org).
 
 Moving to [Haxe](https://haxe.org/documentation/introduction/compiler-targets.html) means that we will have a native implementation of PlantUML in all following languages:
-* Javascript
+* [Javascript](https://plantuml.com/en/haxe-demo-javascript)
 * Java (JVM)
 * Python 3
 * PHP7
@@ -165,7 +165,7 @@ This will build the following files:
 
 ### Javascript example
 
-You can use `libplantuml.js` this way:
+You can use `libplantuml.js` [this way](https://plantuml.com/en/haxe-demo-javascript):
 
 ```
 <script type="text/javascript" src="libplantuml.js"></script>
