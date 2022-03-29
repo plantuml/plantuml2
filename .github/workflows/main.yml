@@ -1,0 +1,131 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  create:
+    tags:
+      - V*
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: krdlab/setup-haxe@v1
+        with:
+          haxe-version: 4.2.4
+
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # Runs a single command using the runners shell
+      - name: check
+        run: |
+          echo Hello, world!
+          ls -l
+          pwd
+          java -version
+          python --version
+          echo end of check
+
+      - name: install haxe libraries
+        run: |
+          haxe -version
+          haxelib --quiet install utest
+          haxelib --quiet install haxe-strings
+          haxelib --quiet install hxjava
+          ls -l
+          echo Installed libraries:
+          haxelib list
+
+      - name: Tests
+        run: |
+          ls -l
+          echo Haxe version:
+          haxe -version
+          haxe unit-test.hxml
+          python --version
+          python unit-test.py > unit-test-py.out
+          java -jar unit-test/MainTest.jar > unit-test-java.out
+          if grep "ALL TESTS OK" unit-test-py.out; then
+            echo "ok"
+          else
+            cat unit-test-py.out
+            exit 1
+          fi
+          if grep "ALL TESTS OK" unit-test-java.out; then
+            echo "ok"
+          else
+            cat unit-test-java.out
+            exit 1
+          fi
+
+      - name: build CLI
+        run: |
+          ls -l
+          haxe CLI.hxml
+          ls -l plantuml-cli.py
+          python plantuml-cli.py
+          ls -l plantuml-cli/MainCLI.jar
+          java -jar plantuml-cli/MainCLI.jar
+
+      - name: build library
+        run: |
+          ls -l
+          haxe lib.hxml
+          ls -l libplantuml.js
+          ls -l libplantuml.py
+          ls -l libplantuml/Libplantuml.jar
+
+      - name: zip javascript
+        uses: papeloto/action-zip@v1
+        with:
+          files: demo-javascript.html libplantuml.js
+          dest: javascript.zip
+
+      - name: zip python
+        uses: papeloto/action-zip@v1
+        with:
+          files: plantuml-cli.py libplantuml.py
+          dest: python.zip
+
+      - name: zip java
+        uses: papeloto/action-zip@v1
+        with:
+          files: plantuml-cli/MainCLI.jar libplantuml/Libplantuml.jar
+          dest: java.zip
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: javascript.zip
+          path: javascript.zip
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: python.zip
+          path: python.zip
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: java.zip
+          path: java.zip
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: |
+            java.zip
+            python.zip
+            javascript.zip
+

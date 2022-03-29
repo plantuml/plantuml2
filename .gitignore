@@ -1,0 +1,12 @@
+.unittest/*.json
+__*
+*.svg
+*.out
+*.js
+*.tmp
+*.py
+!demo-python.py
+_*.html
+unit-test/*
+libplantuml/*
+plantuml-cli/*

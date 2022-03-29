@@ -1,0 +1,27 @@
+# CLI: Command Line Interface
+#
+# The very first time, you have to install two libraries used
+# haxelib haxe-strings
+#
+# This build file can be launch with:
+# haxe ass.hxml
+#
+# After the build, you can run the python command line:
+# python3 Main.py example.puml example.svg
+#
+# Or the java one:
+# java -jar jvm/Main.jar example.puml example.svg
+#
+-cp src
+--library utest
+--library haxe-strings
+-dce no
+--each
+
+--python plantuml-cli.py
+-main MainCLI
+
+--next
+
+--java ./plantuml-cli
+-main MainCLI

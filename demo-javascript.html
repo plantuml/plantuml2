@@ -1,0 +1,63 @@
+<html>
+JavaScript demo of PlantUML 2.
+
+<p></p>
+
+<script type="text/javascript" src="libplantuml.js"></script>
+
+<script type="text/javascript">
+	function update() {
+		var plantuml = new PlantumlV2();
+		var tt = document.getElementById('tt').value;
+		plantuml.addLines(tt);
+		document.getElementById('result').innerHTML = plantuml.getSvg();
+	}
+</script>
+
+<style>
+	#container {
+		display: flex;
+		width: 100%;
+		height: 100%;
+		background: #f7f7f7;
+	}
+
+	.cell {
+		flex-grow: 1;
+		width: 50%;
+	}
+</style>
+
+<div id="container">
+
+	<div class="cell">
+		<textarea id=tt style="width:100%;height:100%;background:#FFF;" onkeyup="update()">
+@startmindmap
+* WORLD
+** America
+*** Canada
+*** USA
+** Europe
+*** UK
+*** France
+*** Germany
+*** Italy
+** Africa
+@endmindmap
+</textarea>
+	</div>
+
+	<div class="cell">
+		<div style="width:100%;height:100%;background:#f0f0f0;">
+			<div id=result></div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	update();
+</script>
+
+
+
+</html>

@@ -1,0 +1,23 @@
+# Build the javascript library:
+#
+# The very first time, you have to install two libraries used
+# haxelib install utest
+# haxelib haxe-strings
+#
+# haxe js.hxml 
+#
+# After the build, you can open the njs.html file
+#
+-cp src
+--library haxe-strings
+-main Libplantuml
+
+--each
+--python libplantuml.py
+
+--next
+--java ./libplantuml
+
+--next
+--js libplantuml.js
+

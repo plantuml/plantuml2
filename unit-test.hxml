@@ -1,0 +1,25 @@
+# Build the javascript library:
+#
+# The very first time, you have to install two libraries used
+# haxelib install utest
+# haxelib haxe-strings
+#
+# haxe js.hxml 
+#
+# After the build, you can open the njs.html file
+#
+-cp test
+-cp src
+--library utest
+--library haxe-strings
+-main MainTest
+
+--each
+--python unit-test.py
+
+--next
+--java ./unit-test
+
+--next
+--js unit-test.js
+

@@ -1,0 +1,8 @@
+# Run the unit tests:
+# haxe build.hxml
+-cp test
+-cp src
+--library utest
+--library haxe-strings
+-main MainTest
+--interp
