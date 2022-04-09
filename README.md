@@ -61,7 +61,7 @@ We are unsure about the following one:
 Features that will be excluded:
 * Ditaa
 
-We will port to Haxe the [Smetana project](https://plantuml.comsmetana02) which means that PlantUML 2 will **not** need any Graphviz/dot executable to run.
+We will port to Haxe the [Smetana project](https://plantuml.com/smetana02) which means that PlantUML 2 will **not** need any Graphviz/dot executable to run.
 
 About the output, we currently generate only SVG, but we plan to support:
 * SVG (**done**)
